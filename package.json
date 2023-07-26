@@ -1,0 +1,31 @@
+{
+    "name": "katwercer",
+    "description": "",
+    "version": "1.0.0",
+    "author": "Mardin Nasouti <info@mardin.pro>",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "tsup index.ts --format cjs,esm --dts",
+        "lint": "tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/krr0ption/katwercer.git"
+    },
+    "keywords": [
+        "time"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/krr0ption/katwercer/issues"
+    },
+    "homepage": "https://github.com/krr0ption/katwercer",
+    "devDependencies": {
+        "@changesets/cli": "^2.26.2",
+        "tsup": "^7.1.0",
+        "typescript": "^5.1.6"
+    }
+}
