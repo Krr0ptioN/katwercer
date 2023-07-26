@@ -19,19 +19,19 @@ jobs:
         with:
           node-version: 16.x
           cache: "pnpm"
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
 
-      - run: pnpm run build
-      - run: pnpm run test
+      - name: Test
+        run: pnpm run test
+
+      - name: build
+        run: pnpm run build
 
       - name: Create changeset
         run: pnpm run changeset
 
-      # Step to publish the new version to the npm registry
       - name: Publish to npm registry
-        run: pnpm publish
-      # You can add more steps for post-publish actions if needed
-      # For example, updating documentation or notifying users
+        run: pnpm publish --access public
       # - name: Update documentation
       #   run: update-docs.sh
 
