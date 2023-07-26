@@ -7,7 +7,7 @@
     "module": "dist/index.mjs",
     "types": "dist/index.d.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest",
         "build": "tsup index.ts --format cjs,esm --dts",
         "lint": "tsc"
     },
@@ -24,7 +24,12 @@
     },
     "homepage": "https://github.com/krr0ption/katwercer",
     "devDependencies": {
+        "@babel/preset-env": "^7.22.9",
+        "@babel/preset-typescript": "^7.22.5",
         "@changesets/cli": "^2.26.2",
+        "@types/jest": "^29.5.3",
+        "babel-jest": "^29.6.1",
+        "jest": "^29.6.1",
         "tsup": "^7.1.0",
         "typescript": "^5.1.6"
     }

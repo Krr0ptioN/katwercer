@@ -10,31 +10,27 @@ type TimeUnit =
     | 'hours'
     | 'minutes'
     | 'seconds';
-
 const MILLISECONDS_IN_SECOND = 1000;
 const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;
 const HOURS_IN_DAY = 24;
 const DAYS_IN_WEEK = 7;
-const WEEKS_IN_MONTH = 4;
-const MONTHS_IN_YEAR = 12;
+const DAYS_IN_MONTH = 30; // Average number of days in a month (approximation for simplicity)
+const DAYS_IN_YEAR = 365; // Approximation (considering non-leap years)
 
 const millisecondsInTimeUnit: Record<TimeUnit, number> = {
-    years:
+    years: // 1000 * 60 * 60 * 24 * 365
         MILLISECONDS_IN_SECOND *
         SECONDS_IN_MINUTE *
         MINUTES_IN_HOUR *
         HOURS_IN_DAY *
-        DAYS_IN_WEEK *
-        WEEKS_IN_MONTH *
-        MONTHS_IN_YEAR,
+        DAYS_IN_YEAR,
     months:
         MILLISECONDS_IN_SECOND *
         SECONDS_IN_MINUTE *
         MINUTES_IN_HOUR *
         HOURS_IN_DAY *
-        DAYS_IN_WEEK *
-        WEEKS_IN_MONTH,
+        DAYS_IN_MONTH,
     weeks:
         MILLISECONDS_IN_SECOND *
         SECONDS_IN_MINUTE *
@@ -42,7 +38,10 @@ const millisecondsInTimeUnit: Record<TimeUnit, number> = {
         HOURS_IN_DAY *
         DAYS_IN_WEEK,
     days:
-        MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY,
+        MILLISECONDS_IN_SECOND *
+        SECONDS_IN_MINUTE *
+        MINUTES_IN_HOUR *
+        HOURS_IN_DAY,
     hours: MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR,
     minutes: MILLISECONDS_IN_SECOND * SECONDS_IN_MINUTE,
     seconds: MILLISECONDS_IN_SECOND,
@@ -74,7 +73,14 @@ function parseTimeUnits(matches: RegExpMatchArray | null): ParsedTime {
  *
  * @param timeString The time string to be converted.
  * @returns The total number of milliseconds.
- * @throws {Error} If the timeString is in an invalid format.
+ *
+ * y: year
+ * M: month
+ * w: week
+ * d: day
+ * h: hour
+ * m: minute
+ * s: second
  *
  * @example
  * const timeString = '1h 30m';
