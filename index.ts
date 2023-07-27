@@ -88,7 +88,7 @@ function parseTimeUnits(matches: RegExpMatchArray | null): ParsedTime {
  * console.log(milliseconds); // Output: 5400000 (1 hour and 30 minutes in milliseconds)
  */
 
-export function convertTimeStringToMilliseconds(timeString: string): number {
+export function convert(timeString: string): number {
     const matches = timeString.match(TIME_REGEX);
     const time = parseTimeUnits(matches);
 
