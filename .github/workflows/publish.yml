@@ -1,5 +1,7 @@
 name: Publish
 on:
+  release:
+    types: [ published ]
   push:
     branches:
       - "main"
@@ -19,19 +21,20 @@ jobs:
         with:
           node-version: 16.x
           cache: "pnpm"
-      - run: pnpm install --no-frozen-lockfile
+      - name: Install Dependencies
+        run: pnpm install --no-frozen-lockfile
 
-      - name: Test
+      - name: Testing
         run: pnpm run test
 
-      - name: build
+      - name: Building
         run: pnpm run build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm publish --access public
+          publish: pnpm publish --access public --no-git-checks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
