@@ -36,5 +36,5 @@ jobs:
         with:
           publish: pnpm publish --access public --no-git-checks
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} --npmrc "registry=https://registry.npmjs.org/" --loglevel verbose
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} --npmrc "registry=https://registry.npmjs.org/"
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
