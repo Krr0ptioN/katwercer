@@ -30,11 +30,8 @@ jobs:
       - name: Building
         run: pnpm run build
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@v1
-        with:
-          publish: pnpm publish --access public --no-git-checks
+      - name: Publish to npm
+        run: pnpm publish --access public --no-git-checks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} --npmrc "registry=https://registry.npmjs.org/"
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
